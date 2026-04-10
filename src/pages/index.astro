@@ -2,6 +2,9 @@
 import '../styles/global.css';
 // Component Imports
 import Button from '../components/Button.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/sections/Hero.astro';
+import Team from '../components/sections/Team.astro';
 
 import ProductAndServices from '../components/sections/ProductAndServices.astro';
 import Testimonial from '../components/sections/Testimonial.astro';
@@ -25,10 +28,13 @@ import Footer from '../components/Footer.astro';
 			<Button>Tailwind Button in Astro!</Button>
 			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
 		</div> -->
+    <Navigation />
+    <Hero />
 		<ProductAndServices />
-		
+    <Team />
 		<Testimonial/>
 		<ContactUs/>
 		<Footer/>
+
 	</body>
 </html>

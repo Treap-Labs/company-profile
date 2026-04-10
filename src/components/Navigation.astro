@@ -1,0 +1,77 @@
+---
+---
+<div class="p-6 fixed grid grid-cols-3 backdrop-blur-sm w-full z-50">
+    <div class="px-4  flex flex-row items-center">
+        <img src="treaplabs-logo.svg" alt="Treap Labs Logo" class="h-10 px-2"/>
+        <a class="px-2 text-xl font-bold">Treap Labs</a>
+    </div>
+    <div class="flex flex-row justify-center">
+        <div class="px-4 flex flex-row items-center">
+            <a class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
+                <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
+                Services</a>
+        </div>
+        <div class="px-4 flex flex-row items-center">
+            <a class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
+                <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
+                Solutions</a>
+        </div>
+        <div class="px-4 flex flex-row items-center">
+            <a class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
+                <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
+                Work</a>
+        </div>
+        <div class="px-4 flex flex-row items-center">
+            <a class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
+                <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
+                Team</a>
+        </div>
+        <div class="px-4 flex flex-row items-center">
+            <a class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
+                <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
+                News</a>
+        </div>
+        <div class="px-4 flex flex-row items-center">
+            <a class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
+                <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
+                Career</a>
+        </div>
+        <div class="px-4 flex flex-row items-center">
+            <a class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
+                <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
+                Contact</a>
+        </div>
+    </div>
+    <div class="mx-8 px-4 text-right">
+        <button class="bg-[#795933] hover:bg-[#B47F43] text-white font-semibold py-2 px-4 border rounded-md">
+            START YOUR PROJECT
+        </button>
+    </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+<script is:inline>
+const links = document.querySelectorAll(".nav-link");
+
+links.forEach(link => {
+    link.addEventListener("click", () => {
+
+        // remove active state
+        links.forEach(l => {
+            l.classList.remove("text-red-500");
+            const dot = l.querySelector(".dot");
+            dot.classList.add("opacity-0", "scale-0");
+        });
+
+        // add active state
+        link.classList.add("text-red-500");
+        const dot = link.querySelector(".dot");
+        dot.classList.remove("opacity-0", "scale-0");
+
+        // OPTIONAL: log which menu clicked
+        console.log("Selected:", link.dataset.link);
+    });
+});
+</script>
