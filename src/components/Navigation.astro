@@ -2,45 +2,36 @@
 ---
 <div class="p-6 fixed grid grid-cols-3 backdrop-blur-sm w-full z-50">
     <div class="px-4  flex flex-row items-center">
-        <img src="treaplabs-logo.svg" alt="Treap Labs Logo" class="h-10 px-2"/>
+        <img src="treaplabs-logo.png" alt="Treap Labs Logo" class="h-10 px-2"/>
         <a class="px-2 text-xl font-bold">Treap Labs</a>
     </div>
     <div class="flex flex-row justify-center">
         <div class="px-4 flex flex-row items-center">
-            <a class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
+            <a href="#home" class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
+                <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
+                Home</a>
+        </div>
+        <div class="px-4 flex flex-row items-center">
+            <a href="#productandservices" class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
                 <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
                 Services</a>
         </div>
         <div class="px-4 flex flex-row items-center">
-            <a class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
-                <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
-                Solutions</a>
-        </div>
-        <div class="px-4 flex flex-row items-center">
-            <a class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
-                <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
-                Work</a>
-        </div>
-        <div class="px-4 flex flex-row items-center">
-            <a class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
+            <a href="#team" class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
                 <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
                 Team</a>
         </div>
         <div class="px-4 flex flex-row items-center">
-            <a class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
+            <a href="#testimonials" class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
                 <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
-                News</a>
+                Testimonials</a>
         </div>
         <div class="px-4 flex flex-row items-center">
-            <a class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
-                <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
-                Career</a>
-        </div>
-        <div class="px-4 flex flex-row items-center">
-            <a class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
+            <a href="#contactus" class="nav-link relative flex flex-col items-center cursor-pointer font-semibold" >
                 <span class="dot absolute -top-2 w-2.5 h-2.5 bg-red-500 rounded-full opacity-0 scale-0 transition-all duration-300"></span>
                 Contact</a>
         </div>
+
     </div>
     <div class="mx-8 px-4 text-right">
         <button class="bg-[#795933] hover:bg-[#B47F43] text-white font-semibold py-2 px-4 border rounded-md">
@@ -53,25 +44,39 @@
 
 <!-- JAVASCRIPT -->
 <script is:inline>
-const links = document.querySelectorAll(".nav-link");
+document.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll(".nav-link");
+    const sections = document.querySelectorAll("section");
 
-links.forEach(link => {
-    link.addEventListener("click", () => {
+    function setActive(id) {
+        links.forEach(link => {
+            const dot = link.querySelector(".dot");
 
-        // remove active state
-        links.forEach(l => {
-            l.classList.remove("text-red-500");
-            const dot = l.querySelector(".dot");
+            link.classList.remove("text-red-500");
             dot.classList.add("opacity-0", "scale-0");
+
+            if (link.getAttribute("href") === "#" + id) {
+                link.classList.add("text-red-500");
+                dot.classList.remove("opacity-0", "scale-0");
+            }
         });
+    }
 
-        // add active state
-        link.classList.add("text-red-500");
-        const dot = link.querySelector(".dot");
-        dot.classList.remove("opacity-0", "scale-0");
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setActive(entry.target.id);
+                }
+            });
+        },
+        {
+            threshold: 0.6 // section considered active when 60% visible
+        }
+    );
 
-        // OPTIONAL: log which menu clicked
-        console.log("Selected:", link.dataset.link);
+    sections.forEach(section => {
+        observer.observe(section);
     });
 });
 </script>
